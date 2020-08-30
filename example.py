@@ -13,7 +13,7 @@ from math import sqrt
 
 
 def main():
-    n, d = 300, 2
+    n, d = 3000000, 200
 
     # generate some data points ..
     data = torch.Tensor(n, d).normal_()
@@ -22,9 +22,9 @@ def main():
     data[:n//2] *= sqrt(3)
     data[n//2:] += 1
     data[n//2:] *= sqrt(2)
-
+    data = data.cuda()
     # Next, the Gaussian mixture is instantiated and ..
-    n_components = 2
+    n_components = 50
     model = GaussianMixture(n_components, d)
     model.fit(data)
     # .. used to predict the data points as they where shifted

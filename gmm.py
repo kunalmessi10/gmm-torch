@@ -66,6 +66,10 @@ class GaussianMixture(torch.nn.Module):
 
         self.params_fitted = False
 
+        self.mu = self.mu.cuda()
+        self.var = self.var.cuda()
+        self.pi = self.pi.cuda()
+
 
     def check_size(self, x):
         if len(x.size()) == 2:
